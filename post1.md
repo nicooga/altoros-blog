@@ -14,18 +14,18 @@ More readability, less LOC, less pain. Lets iterate over some of it’s features
   + Parenthesis(`()`) are optional.  
   + `->(){}` syntax:  
   **javascript:**  
-  ```
+  ```javascript
     f = function() {
       return x(Math.pow(x, 3) + 4);
     }
   ```  
   **coffeescript:**  
-  ```
+  ```coffeescript
     f = ->(x) Math.pow(x, 3) + 4
   ```
   + Code blocks are infered from indentation, there's a lot of flexibility for passing arguments. This can be appreciatted much more when working with complex argument list that could take functions as parameters. Real life example:  
   **javascript:**  
-  ```
+  ```javascript
   $('#query_form a').on('click', function() {
     var $query;
     $query = $(this).parent().find('input[name="query"]').val();
@@ -53,7 +53,7 @@ More readability, less LOC, less pain. Lets iterate over some of it’s features
   });
   ```  
   **coffeescript:**  
-  ```
+  ```coffeescript
     $('#query_form a').on 'click', ->
       $query = $(this).parent().find('input[name="query"]').val()
       return alert "NO ò_ò" if $query is ""
@@ -74,7 +74,7 @@ More readability, less LOC, less pain. Lets iterate over some of it’s features
   Trying to debug last piece of code at plain sight can murder your eyes. Miss a single bracket and you are done for. Although LOC doesn't seem to get too low in this example, readability can save precious minutes -or even hours- of your time.
   + Compiler takes care of lexical scope. No more `var` declarations. `return` keywords are also optional.  
   **coffeescript:**  
-  ```  
+  ```coffeescript
   outer = 1
   changeNumbers = ->
     inner = -1
@@ -94,13 +94,13 @@ More readability, less LOC, less pain. Lets iterate over some of it’s features
       [].splice.apply(numbers, [3, 4].concat(_ref = [-3, -4, -5, -6])), _ref;
   + `return`s are automatically pushed into each possible branch of execution, so your ruby:
   **ruby:**  
-  ```
+  ```ruby
   def greet
     "Good #{daytime == 'night' ? 'night' : 'day'}"
   end
   ```  
   becomes
   **coffeescript:** (yes! string interpolation supported)  
-  ```
+  ```coffeescript
   greet = -> "Good #{daytime is 'night' ? 'night' : 'day'}"
   ```  
