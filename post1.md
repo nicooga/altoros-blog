@@ -68,7 +68,6 @@ More readability, less LOC, less pain. Lets iterate over some of it’s features
   ```
   Trying to debug last piece of code at plain sight can murder your eyes. Miss a single bracket and you are done for. Although LOC doesn't seem to get too low in this example, readability can save precious minutes -or even hours- of your time.
   + Compiler takes care of lexical scope. No more `var` declarations. `return` keywords are also optional.  
-  **coffeescript:**
 
   ```coffeescript
     outer = 1
@@ -85,7 +84,6 @@ More readability, less LOC, less pain. Lets iterate over some of it’s features
   ```
 
   + `return`s are automatically pushed into each possible branch of execution, so your ruby:  
-  **ruby:**
 
   ```ruby
     def greet # No superfluous returns needed
