@@ -1,7 +1,7 @@
 Why Coffeescript
 ----------------
 
-**Disclamier:** This post intends to encourage a coding style (be read *preferences*) that *can make your life easier*. Some of these could make resemblance to certain languages that may or may not be of liking to -or even offend- some people. We come in peace, no offense intended. 
+**Disclamier:** This post intends to encourage a coding style (be read *preferences*) that *can make your life easier*. Some of these could make resemblance to certain languages that may or may not be of liking to -or even offend- [some people](http://oscargodson.com/posts/why-i-dont-use-coffeescript.html). We come in peace, no offense intended. 
 
 Javascript is the only choice we have in browser interpreted languages. Yet powerful, coding on plain JS syntax can become cumbersome, specially for those who come from OO languages like Ruby or Python. Coffescript addresses this problem with a transparent solution: a beautiful language that compiles to JS.
 
@@ -79,21 +79,10 @@ More readability, less LOC, less pain. Lets iterate over some of it’s features
   ```
   + Inline syntax for most language features:
     coffeescript:  
-      person.sing() if person.happy
-  + Array slicing with ranges. Note that this compiles to totally normal js:  
-    **coffeescript:**
 
-    ```coffeescript
-      numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-      numbers[3..6] = [-3, -4, -5, -6]
-    ```
-    
-    **javascript:**
-    ```javascript
-      var numbers, _ref;
-      numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
-      [].splice.apply(numbers, [3, 4].concat(_ref = [-3, -4, -5, -6])), _ref;
-    ```
+  ```coffescript
+    person.sing() if person.happy
+  ```
 
   + `return`s are automatically pushed into each possible branch of execution, so your ruby:  
   **ruby:**
@@ -108,3 +97,15 @@ More readability, less LOC, less pain. Lets iterate over some of it’s features
   ```coffeescript
     greet = -> "Good #{daytime is 'night' ? 'night' : 'day'}"
   ```  
+
+It would be redundant to mention all coffeescript features here. Check [Coffeescript.org](http://coffeescript.org/) for more info on it's goodies, or have fun convertig your JS into coffee and see what it is like [here](http://js2coffee.org/).
+Now the real question is, should you use CS? You surely have found a variety of feedback about why or why not use CS.
+All these people have (more or less) equally valid arguemnts but I'd like to emphasize one:
+
+Maggie Longshore commented on [A case against coffescript](http://ryanflorence.com/2011/case-against-coffeescript/)
+> Substitute C for CS and Assembler for JS and then these arguments remind me of when Assembler programmers where starting to use C to write programs, C was much faster to write and easier to read, We knew Assembler inside and out. At the time the debugging had to be done at the assembly level (embedded systems).  So we had to debug in assembler code that we had not written if we wrote the programs in C or we could write and debug the entire application in Assembler.  Fortunately we had source code listings with C and assembler along with the mapped addresses to ease stepping into code and writing patches on the fly for testing.  
+> Writing in C was less error-prone and much less time had to be spent debugging, we were much more productive in C. The tooling got better and there was no looking back.  
+> I don't know if CS will survive or not but if developers are productive in it then the tooling and debug story can be improved with time.  
+
+In any case, if you are new to Javascript, I'd suggest not to jump on coffee until you got the basics covered or -as many other people pointed- you'll get all wrong.
+In the end Coffescript is another way of writting Javascript, and (I hope) a better one.
