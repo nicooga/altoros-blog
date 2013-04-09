@@ -99,9 +99,9 @@ More readability, less LOC, less pain. Lets iterate over some of it’s features
   **ruby:**
 
   ```ruby
-  def greet
-    "Good #{daytime == 'night' ? 'night' : 'day'}"
-  end
+    def greet # No superfluous returns needed
+      "Good #{daytime == 'night' ? 'night' : 'day'}"
+    end
   ```  
   becomes
   **coffeescript:** (yes! string interpolation supported)  
