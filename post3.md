@@ -99,3 +99,5 @@ str.gsub(/\p{Cyrillic}+.*?\./u) do |m|
   s << '</translation>'
 end
   ```
+
+Test your patterns on the excellent [Rubular](http://rubular.com/) online regexp tester. 
