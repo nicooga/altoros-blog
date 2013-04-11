@@ -21,7 +21,7 @@ Apart from classic metacharacters (`/./`, `/\w/`, `/\W/`, `/\d/`, `/\D/`, `/\h/`
   * `/[[:word:]]/`   - A character in one of the following Unicode general categories Letter, Mark, Number, Connector_Punctuation
   * `/[[:ascii:]]/`  - A character in the ASCII character set
 
-Group notation was also introduced in 1.9. With this feature you can keep complex regexps DRY without hacky interpolation:
+**Named capture group notation** was also introduced in 1.9. With this feature you can keep complex regexps DRY without hacky interpolation:
 
   ```ruby
 # Stolen from 'http://ruby.about.com/od/newinruby191/a/namedreg.htm'
@@ -40,6 +40,28 @@ user_regexp = %r{
   \g<username>:\g<ip_address>:\g<admin>
 }x
 
+users.map { |u| u.scan(user_regexp) }
+
+=> [[["alice", "112", "10.23.52.112", "true"]],
+ [["bob", "34", "192.168.10.34", "false"]]]
+  ```
+Accesing named groups is easy:
+
+  ```ruby
+users.map do |u|
+  m = u.match(user_regexp)
+  Hash[m.names.map(&:to_sym).zip(m.captures)]
+end
+
+=> [{:username=>"alice",
+  :ip_number=>"112",
+  :ip_address=>"10.23.52.112",
+  :admin=>"true"},
+ {:username=>"bob",
+  :ip_number=>"34",
+  :ip_address=>"192.168.10.34",
+  :admin=>"false"}] # Ready for initialization!
+  
 users.map { |u| u.scan(user_regexp) }
 
 => [[["alice", "112", "10.23.52.112", "true"]],
