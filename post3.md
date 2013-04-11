@@ -21,6 +21,8 @@ Apart from classic metacharacters (`/./`, `/\w/`, `/\W/`, `/\d/`, `/\D/`, `/\h/`
   * `/[[:word:]]/`   - A character in one of the following Unicode general categories Letter, Mark, Number, Connector_Punctuation
   * `/[[:ascii:]]/`  - A character in the ASCII character set
 
+... and a bunch more. Check [Ruby Regexp](http://ruby-doc.org/core-1.9.3/Regexp.html) for more info.
+
 **Named capture group notation** was also introduced in 1.9. With this feature you can keep complex regexps DRY without hacky interpolation:
 
   ```ruby
@@ -45,14 +47,18 @@ users.map { |u| u.scan(user_regexp) }
 => [[["alice", "112", "10.23.52.112", "true"]],
  [["bob", "34", "192.168.10.34", "false"]]]
   ```
-Accesing named groups is easy:
+Accesing **named groups** is easy:
 
-  ```ruby
+  ```ruby  
+users.map { |u| u.scan(user_regexp) }
+
+=> [[["alice", "112", "10.23.52.112", "true"]],
+ [["bob", "34", "192.168.10.34", "false"]]]
+ 
 users.map do |u|
   m = u.match(user_regexp)
   Hash[m.names.map(&:to_sym).zip(m.captures)]
 end
-
 => [{:username=>"alice",
   :ip_number=>"112",
   :ip_address=>"10.23.52.112",
@@ -61,9 +67,35 @@ end
   :ip_number=>"34",
   :ip_address=>"192.168.10.34",
   :admin=>"false"}] # Ready for initialization!
-  
-users.map { |u| u.scan(user_regexp) }
+  ```
+**Replacement** can be handled via `String#gsub`:
 
-=> [[["alice", "112", "10.23.52.112", "true"]],
- [["bob", "34", "192.168.10.34", "false"]]]
+  ```ruby
+str = 'S4quee8ze1 a46l2257l the 0numbe71r0s to 0s687e62e 5me7618.'
+str.gsub(/\d/, '')
+
+=> "Squeeze all the numbers to see me."
+  
+str = 'HeLLo WoRld! ThIs CaSe seEms tO Be WroNG...'
+
+str.gsub(/\w+/) do |w|
+  if w =~ /wrong/i
+    'Just Fine'
+  else
+    w[0].capitalize + w[1..-1].downcase
+  end
+end
+
+=> "Hello World! This Case Seems To Be Just Fine..."
+  ```
+And there are also metacharacter for **unicode groups** from *Arabic* to *Yi*:
+
+  ```ruby
+str = 'HEY YOU, Вы, кажется, не в том месте парня.'
+
+str.gsub(/\p{Cyrillic}+.*?\./u) do |m|
+  s = '<translation>'
+  s << EasyTranslate.translate(m, from: :russian, to: :english)
+  s << '</translation>'
+end
   ```
