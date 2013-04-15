@@ -1,7 +1,7 @@
 The power of enumerators
 ========================
 
-Ruby comes equipped with the `Enumerable` class, wich includes `Enumerable`.
+Ruby comes equipped with the `Enumerator` class, wich includes `Enumerable`.
 This class comes in handy for a couple of things, but it's really good for generating
 (possibly infinite) sequences.
 
@@ -36,8 +36,54 @@ fib.select(&:prime?) # Don't let ruby assume your enumerator is finite (if it is
 => '*universe collapses*'
 ```
 
-A quick example with finite sequences
+What about mathematical functions?
 
 ```ruby
-  
+class Quadratic < Enumerator
+  # keyword arguments, new in ruby 2.0
+  # check the links for more info
+  def initialize(a=0,b=0,c=0, floor: 0, ceiling: Float::INFINITY)
+    super() do |yielder|
+      x = floor
+      while x <= ceiling do
+        yielder << a*x**2 + b*x + c
+        x += 1
+      end
+    end
+  end
+end
+
+q = Quadratic.new 1, 0, 0, floor: -10, ceiling: 10
+
+q.next
+=> 100
+q.next
+=> 81
+q.each.with_index { |n, i| puts "f(#{i-10})= #{n}" }
+=> [10000,
+ 6561,
+ 4096,
+ 2401,
+ 1296,
+ 625,
+ 256,
+ 81,
+ 16,
+ 1,
+ 0,
+ 1,
+ 16,
+ 81,
+ 256,
+ 625,
+ 1296,
+ 2401,
+ 4096,
+ 6561,
+ 10000]
 ```
+
+Check more:
+
+  + http://ruby-doc.org/core-2.0/Enumerator.html
+  + http://blog.rubyhead.com/2013/02/26/ruby-2-0-getting-started-named-parameters/
