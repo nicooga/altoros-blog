@@ -12,7 +12,7 @@ As I see it, CS is meant to let you do things the ruby way. That is, write less,
 More readability, less LOC, less pain. Lets iterate over some of it’s features.
 
   + Parenthesis(`()`) are optional.  
-  + `->(){}` syntax:  
+  + `(...)->` syntax:  
   **javascript:**
 
   ```javascript
@@ -24,7 +24,7 @@ More readability, less LOC, less pain. Lets iterate over some of it’s features
   **coffeescript:**  
 
   ```coffeescript
-  f = ->(x) Math.pow(x, 3) + 4
+  f = (x)-> Math.pow(x, 3) + 4
   ```  
   + Code blocks are infered from indentation, there's a lot of flexibility for passing arguments. This can be appreciatted much more when working with complex argument list that could take functions as parameters. Real life example:  
   **javascript:**
@@ -87,13 +87,19 @@ More readability, less LOC, less pain. Lets iterate over some of it’s features
 
   ```ruby
     def greet # No superfluous returns needed
-      "Good #{daytime == 'night' ? 'night' : 'day'}"
+      hs = Time.now.strftime("%k")
+      "Good #{hs === 6..19 ? 'night' : 'day'}"
     end
   ```  
   becomes
   **coffeescript:** (yes! string interpolation supported)  
   ```coffeescript
-    greet = -> "Good #{daytime is 'night' ? 'night' : 'day'}"
+    greet = ->
+      hs = (new Date()).getHours
+      what = if (hs in [6..19]) then 'day' else 'night'
+      "Good #{what}"
+  
+    alert greet()
   ```  
 
 It would be redundant to mention all coffeescript features here. Check [Coffeescript.org](http://coffeescript.org/) for more info on it's goodies, or have fun convertig your JS into coffee and see what it is like [here](http://js2coffee.org/).
