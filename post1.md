@@ -96,9 +96,8 @@ More readability, less LOC, less pain. Lets iterate over some of it’s features
   ```coffeescript
     greet = ->
       hs = (new Date()).getHours
-      what = if (hs in [6..19]) then 'day' else 'night'
-      "Good #{what}"
-  
+      "Good #{(hs in [6..19]) ? 'day' : 'night'}"
+      
     alert greet()
   ```  
 
