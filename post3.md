@@ -23,7 +23,7 @@ Apart from classic metacharacters (`/./`, `/\w/`, `/\W/`, `/\d/`, `/\D/`, `/\h/`
 
 ... and a bunch more. Check [Ruby Regexp](http://ruby-doc.org/core-1.9.3/Regexp.html) for more info.
 
-**Named capture group notation** was also introduced in 1.9. With this feature you can keep complex regexps DRY without hacky interpolation:
+[**Subexpression calls**](http://ruby-doc.org/core-2.0/Regexp.html#label-Subexpression+Calls) was also introduced in 1.9. With this feature you can keep complex regexps DRY without hacky interpolation:
 
   ```ruby
 # Stolen from 'http://ruby.about.com/od/newinruby191/a/namedreg.htm'
