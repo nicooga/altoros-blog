@@ -1,0 +1,14 @@
+.posts
+  %h1 Listing posts
+
+  - @posts.each do |post|
+    %hr
+    .post
+
+      %legend
+        = post.title
+        %small{id: "#{post.id}_votes"}
+          Votes: 
+          = post.votes
+      = link_to 'Vote_up', vote_up_post_path(post), class: 'vote_up', 'data-method' => :put, id: post.id
+      = post.body.html_safe
