@@ -13,6 +13,7 @@ $ rake db:migrate
 We can begin to work with this basic scaffold. There are multiple of going about votes; you may choose to create another model for votes in order to keep track of what a user has voted, being able to remove your vote, limit the times a user can vote in the same post, etc. But I'll use the simpler way, a integer column *votes* on *Posts* table. I'd recommended using [`ActiveRecord::Counter`](http://api.rubyonrails.org/classes/ActiveRecord/CounterCache.html) for updating the `votes` field.
 
 ```ruby
+# app/controllers/posts_controller.rb
 class PostsController < ApplicationController
   respond_to :html, :json
 
@@ -46,6 +47,7 @@ end
 A js (coffescript) snippet for the vote up button and we should be good to go.
 
 ```coffeescript
+# app/assets/posts.js.coffee
 $ ->
   $('.post a.vote_up').click (ev)->
     ev.stopImmediatePropagation()
