@@ -2,7 +2,7 @@ AJAX on Rails
 =============
 
 As a live demo of what coding CoffeeScript feels like this little tutorial covers the basics of AJAX and Rails.
-This time I'll use a classic app: a microblogging app for posts, and an asynchronous voting feature for them.
+This time I'll use a classic example: a microblogging app for posts, and an asynchronous voting feature for them.
 
 ```bash
 $ rm public/index.html
@@ -31,8 +31,7 @@ class PostsController < ApplicationController
   end
 end
 ```
-
-We'll need to add some routes before:
+We'll need to add some routes:
 
 ```ruby
 # config/routes.rb
@@ -43,8 +42,24 @@ MyBloggingApp::Application.routes.draw do
   end
 end
 ```
+And a basic view:
+```haml
+.posts
+  %h1 Listing posts
 
-A js (coffescript) snippet for the vote up button and we should be good to go.
+  - @posts.each do |post|
+    %hr
+    .post
+      %legend
+        = post.title
+        %small{id: "#{post.id}_votes"}
+          Votes: 
+          = post.votes
+      = link_to 'Vote_up', vote_up_post_path(post), class: 'vote_up', 'data-method' => :put, id: post.id
+      = post.body.html_safe
+```
+
+A js (coffescript) snippet for the vote up button and we should be good to go. Note that we are binding the ajax call to the click event on the vote button. If the javascript is disabled or find a runtime error the button will downgrade gracefully to the html action: voting up and redirecting back.
 
 ```coffeescript
 # app/assets/posts.js.coffee
