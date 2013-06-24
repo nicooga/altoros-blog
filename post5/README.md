@@ -59,7 +59,9 @@ And a basic view:
       = post.body.html_safe
 ```
 
-A js (coffescript) snippet for the vote up button and we should be good to go. Note that we are binding the ajax call to the click event on the vote button. If the javascript is disabled or find a runtime error the button will downgrade gracefully to the html action: voting up and redirecting back.
+A js (coffescript) snippet for the vote up button and we should be good to go.
+Note that we are binding the ajax call to the click event on the vote button.
+If the javascript is disabled or a runtime error is found the button will downgrade gracefully to the html action: voting up and redirecting back.
 
 ```coffeescript
 # app/assets/posts.js.coffee
