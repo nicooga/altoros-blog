@@ -43,7 +43,9 @@ MyBloggingApp::Application.routes.draw do
 end
 ```
 And a basic view:
+
 ```haml
+# app/views/posts/index.haml
 .posts
   %h1 Listing posts
 
