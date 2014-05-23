@@ -16,8 +16,8 @@ More readability, less LOC, less pain. Lets iterate over some of it’s features
   **javascript:**
 
   ```javascript
-    f = function() {
-      return x(Math.pow(x, 3) + 4);
+    f = function(x) {
+      return (Math.pow(x, 3) + 4);
     }
   ```
 
